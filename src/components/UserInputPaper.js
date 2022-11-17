@@ -10,12 +10,12 @@ const UserInputPaper = (props) => {
         alignItems: "center",
       }}
     >
-      <Typography data-testid="UserInputPaper--h5" variant="h5">
+      <Typography data-testid="UserInputPaper-h5" variant="h5">
         Type name
       </Typography>
       <Box sx={{ mt: 1 }}>
         <TextField
-          inputProps={{ "data-testid": "UserInputPaper--input" }}
+          inputProps={{ "data-testid": "UserInputPaper-input" }}
           type="text"
           margin="normal"
           fullWidth
@@ -26,7 +26,7 @@ const UserInputPaper = (props) => {
           onChange={props.handleChange}
         />
         <Button
-          data-testid="UserInputPaper--button"
+          data-testid="UserInputPaper-button"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}

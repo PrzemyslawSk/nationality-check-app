@@ -29,12 +29,12 @@ it("Checks if component <UserInputPaper/> renders", () => {
     );
   });
 
-  expect(screen.getByTestId("UserInputPaper--h5")).toHaveTextContent(
+  expect(screen.getByTestId("UserInputPaper-h5")).toHaveTextContent(
     "Type name"
   );
 });
 
-it("Types 'Przemek' to input", async () => {
+it("Checks if input 'Przemek' calls 'handleChange()' 7 times", async () => {
   const user = userEvent.setup();
   const inputName = { name: "" };
   const handleChange = jest.fn();
@@ -50,9 +50,32 @@ it("Types 'Przemek' to input", async () => {
     );
   });
 
-  const input = screen.getByTestId("UserInputPaper--input");
+  const input = screen.getByTestId("UserInputPaper-input");
   await user.type(input, "Przemek");
   await waitFor(() => {
-    expect(handleChange).toHaveBeenCalled();
+    expect(handleChange).toHaveBeenCalledTimes(7);
+  });
+});
+
+it("Checks if button calls 'onClickGetJson()'", async () => {
+  const user = userEvent.setup();
+  const inputName = { name: "" };
+  const handleChange = jest.fn();
+  const onClickGetJson = jest.fn();
+
+  act(() => {
+    render(
+      <UserInputPaper
+        inputName={inputName}
+        handleChange={handleChange}
+        onClickGetJson={onClickGetJson}
+      />
+    );
+  });
+
+  const button = screen.getByTestId("UserInputPaper-button");
+  await user.click(button);
+  await waitFor(() => {
+    expect(onClickGetJson).toHaveBeenCalled();
   });
 });
